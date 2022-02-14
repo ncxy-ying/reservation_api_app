@@ -1,6 +1,12 @@
 # Reservation API app
 
-## Setup
+This is a purely API reservation application written using Ruby on Rails with postgresql. The main feature of this application is to parse data from different formats (currently it support 2 formats).
+
+## Highlight
+
+The features are written in a reusable manner. There are 2 models in this application, which is `Guest` and `Reservation`. `Guest` is to record guest information and `Reservation` is to record booking information for guests. For example, booking service is to differentiate payload format, parse the data and save into database. Upsert `Guest` and `Reservation` services are written in a reusable way which allow different payload to upsert information after data parsing.
+
+## Setup and run the project
 
 ```
 # create database
@@ -21,11 +27,12 @@ $ rails s
 
 ## Try it out
 
-POST to this API end point (`/api/v1/reservations/book/`) with payload to create or update reservation infomation.
+'POST' to this API end point (`/api/v1/reservations/book/`) with payload to create or update reservation infomation.
 
 Example payload format:
 
-payload 1:
+payload format 1:
+
 ```
 {
 	"reservation_code": "YYY12345678",
@@ -50,7 +57,8 @@ payload 1:
 }
 ```
 
-payload 2:
+payload format 2:
+
 ```
 {
 	"reservation": {
@@ -81,19 +89,21 @@ payload 2:
 }
 ```
 
+Success response code is `200` while failed response code is return `422`
+
 ## Find related files at
 
-End point API controller:
+1. End point API controller:
 
 `app/controllers/api/v1/reservations_controller.rb`
 
 
-Upsert Guest Service:
+2. Upsert Guest Service:
 
 `app/lib/feature/guest/upsert.rb`
 
 
-Reservation Services:
+3. Reservation Services:
 
 `app/lib/feature/reservation/`
 * `airbnb_parse.rb`
@@ -102,12 +112,12 @@ Reservation Services:
 * `upsert.rb`
 
 
-Guest Service Test files:
+4. Guest Service Test files:
 
 `spec/lib/feature/guest/`
 
 
-Reservation Service Test files:
+5. Reservation Service Test files:
 
 `spec/lib/feature/reservation/`
 * `airbnb_parse_spec.rb`
