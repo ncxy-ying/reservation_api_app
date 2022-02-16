@@ -1,6 +1,6 @@
 # Reservation API app
 
-This is a purely API reservation application written using Ruby on Rails with postgresql. The main feature of this application is to parse data from different formats (currently it support 2 formats).
+This is a purely API reservation application written using Ruby on Rails. The main feature of this application is to parse data from different formats (currently it support 2 formats).
 
 ## Highlight
 
